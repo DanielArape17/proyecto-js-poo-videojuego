@@ -1,14 +1,14 @@
 /*Funciones*/
 
 function numeroAleatorio(max){
-  return Math.floor(Math.random() * (max)) + 1;
+  return Math.floor(Math.random() * (max));
 }
 
 function turnos(personajesJugables){
   let velocidadesUsadas = []
   
   personajesJugables.forEach((personaje, i) => {
-    let velocidadUsada = [numeroAleatorio(personaje.velocidad), i]
+    let velocidadUsada = [numeroAleatorio(personaje.velocidad) + 1, i]
     velocidadesUsadas.push(velocidadUsada)
     console.log(`La velocidad de ${personaje.nombre} es de ${velocidadUsada[0]}`)    
   });
