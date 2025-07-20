@@ -16,3 +16,27 @@ function turnos(personajesJugables){
   return velocidadesUsadas.sort().reverse()
 }
 
+function atacarPorTurno(personajesJugables){
+  turno = 0
+  let resultadoTurnos = turnos(personajesJugables);
+  let personajesMuertos = []
+
+  while(turno < largoPersonajesJugables){
+    do {
+      personajeAtacado = numeroAleatorio(largoPersonajesJugables);
+    } while (personajeAtacado === resultadoTurnos[turno][1] || personajesJugables[personajeAtacado].muerto === true);
+
+    if(personajesJugables[resultadoTurnos[turno][1]].muerto === false){
+      personajesJugables[resultadoTurnos[turno][1]].atacar(personajesJugables[personajeAtacado]);
+    }
+    
+    if (personajesJugables[personajeAtacado].vida < 1){
+      console.log(`ha muerto ${personajesJugables[personajeAtacado].nombre}`)
+      personajesJugables[personajeAtacado].muerto = true
+      personajesMuertos.push(personajesJugables[personajeAtacado])
+    }
+
+    turno++
+}
+return personajesMuertos
+}
