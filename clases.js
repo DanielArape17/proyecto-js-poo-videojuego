@@ -11,7 +11,7 @@ class Personaje {
 
   atacar(atacado) {
     atacado.vida = atacado.vida - this.ataque 
-    console.log(`${this.nombre} a atacado a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+    console.log(` ${this.nombre} a atacado a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
   }
 
   saludar() { 
@@ -38,7 +38,7 @@ class Guerrero extends Personaje{
 }
 
 const guardiaHielo = new Guerrero("Guardia de Hielo", "Guerrero", 145, 45, 90, 5, false,["Hacha", "Dagas"])
-const soldadoLA = new Guerrero("Soldado de LA", "Guerrero", 150, 60, 75, 4, false, ["Espada, Onda de Luz Azul"])
+const soldadoLA = new Guerrero("Soldado de LA", "Guerrero", 150, 60, 75, 4, false, ["Espada", "Onda de Luz Azul"])
 
 /*
   mago tiene las siguientes propiedades y metodos:

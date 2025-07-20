@@ -10,14 +10,14 @@ function turnos(personajesJugables){
   personajesJugables.forEach((personaje, i) => {
     let velocidadUsada = [numeroAleatorio(personaje.velocidad) + 1, i]
     velocidadesUsadas.push(velocidadUsada)
-    console.log(`La velocidad de ${personaje.nombre} es de ${velocidadUsada[0]}`)    
+    //console.log(`La velocidad de ${personaje.nombre} es de ${velocidadUsada[0]}`)    
   });
   
   return velocidadesUsadas.sort().reverse()
 }
 
 function atacarPorTurno(personajesJugables){
-  turno = 0
+  let turno = 0
   let resultadoTurnos = turnos(personajesJugables);
   let personajesMuertos = []
 
@@ -39,4 +39,21 @@ function atacarPorTurno(personajesJugables){
     turno++
 }
 return personajesMuertos
+}
+
+function ganador(personajesJugables, personajesJugables){
+  let ganador = personajesJugables
+
+  personajesMuertos.forEach((personaje) => {
+    ganador.forEach((gano, j) => {
+      if(personaje === gano){
+        ganador.splice(j, 1)
+      }
+    })
+  })
+
+  console.log("El ganador es")
+  console.log(ganador[0].nombre)
+
+  return ganador[0].nombre
 }
