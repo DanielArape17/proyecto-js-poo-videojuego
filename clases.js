@@ -9,9 +9,9 @@ class Personaje {
     this.muerto = muerto;
   }
 
-  atacar(atacado) {
+  atacarConManos(atacado) {
     atacado.vida = atacado.vida - this.ataque 
-    console.log(` ${this.nombre} a atacado a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+    console.log(` ${this.nombre} a atacado con puños a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
   }
 
   saludar() { 
@@ -32,13 +32,29 @@ class Guerrero extends Personaje{
     this.armas = armas;
   }
 
-  atacarArma() {
-    console.log(`${this.nombre} ataca con ${this.armas}`);
+  atacar(atacado){
+    let posibilidadDeAtaque = numeroAleatorio(6) + 1
+    if(posibilidadDeAtaque < 3){
+      super.atacarConManos(atacado)
+    }
+    else{
+      let totalArmas = Object.keys(this.armas).length
+      let elegirArma = numeroAleatorio(totalArmas)
+      atacado.vida = atacado.vida - this.armas[elegirArma].dañoArma
+      console.log(` ${this.nombre} a atacado con ${this.armas[elegirArma].nombreArma} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+    }
   }
 }
 
-const guardiaHielo = new Guerrero("Guardia de Hielo", "Guerrero", 145, 45, 90, 5, false,["Hacha", "Dagas"])
-const soldadoLA = new Guerrero("Soldado de LA", "Guerrero", 150, 60, 75, 4, false, ["Espada", "Onda de Luz Azul"])
+const guardiaHielo = new Guerrero("Guardia de Hielo", "Guerrero", 160, 40, 85, 6, false, [ 
+  {nombreArma:"Hacha", dañoArma: 70},
+  {nombreArma:"Dagas", dañoArma: 55}
+]);
+
+const soldadoLA = new Guerrero("Soldado de LA", "Guerrero", 170, 45, 80, 5, false, [
+  {nombreArma:"Espada", dañoArma: 65},
+  {nombreArma:"Onda de Luz Azul", dañoArma: 85}
+]);
 
 /*
   mago tiene las siguientes propiedades y metodos:
@@ -53,13 +69,35 @@ class Mago extends Personaje{
     this.hechizos = hechizos;
   }
 
-  atacarHechizos() {
-    console.log(`${this.nombre} ataca con ${this.hechizos}`);
+  //atacarHechizos() {
+  //  console.log(`${this.nombre} ataca con ${this.hechizos}`);
+  //}
+
+  atacar(atacado){
+    let posibilidadDeAtaque = numeroAleatorio(6) + 1
+    if(posibilidadDeAtaque < 3){
+      super.atacarConManos(atacado)
+    }
+    else{
+      let totalHechizos = Object.keys(this.hechizos).length
+      let elegirHechizos = numeroAleatorio(totalHechizos)
+      atacado.vida = atacado.vida - this.hechizos[elegirHechizos].dañoHechizos
+      console.log(` ${this.nombre} a atacado con ${this.hechizos[elegirHechizos].nombreHechizos} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+    }
   }
 }
 
-const reyMago = new Mago("Rey Mago", "Mago", 85, 85, 50, 9, false, ["fuego", "hielo", "agua", "veneno"])
-const bruja = new Mago("Bruja", "Mago", 145, 55, 55, 7, false, ["veneno", "cuervos"])
+const reyMago = new Mago("Rey Mago", "Mago", 90, 10, 50, 8, false, [
+  {nombreHechizos: "Fuego", dañoHechizos: 80},
+  {nombreHechizos: "Hielo", dañoHechizos: 75},
+  {nombreHechizos: "Agua", dañoHechizos: 90},
+  {nombreHechizos: "Veneno", dañoHechizos: 70}
+])
+
+const bruja = new Mago("Bruja", "Mago", 100, 25, 50, 7, false, [
+  {nombreHechizos: "Veneno", dañoHechizos: 70},
+  {nombreHechizos: "Cuervos", dañoHechizos: 85}
+]);
 
 /*
   arquero tiene las siguientes propiedades y metodos:
@@ -74,9 +112,21 @@ class Arquero extends Personaje{
     this.flechas = flechas;
   }
 
-  disparar() {
-    console.log(`${this.nombre} ataca con arco`);
+  atacar(atacado){
+    let posibilidadDeAtaque = numeroAleatorio(6) + 1
+    if(posibilidadDeAtaque < 3){
+      super.atacarConManos(atacado)
+    }
+    else{
+      let totalFlechas = Object.keys(this.flechas).length
+      let elegirFlechas = numeroAleatorio(totalFlechas)
+      atacado.vida = atacado.vida - this.flechas[elegirFlechas].dañoFlecha
+      console.log(` ${this.nombre} a atacado con ${this.flechas[elegirFlechas].nombreFlecha} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+    }
   }
 }
 
-const legolas = new Arquero("Legolas", "Arquero", 120, 55, 40, 10, false, ["potente", "normal"]);
+const legolas = new Arquero("Legolas", "Arquero", 130, 40, 45, 12, false, [
+  {nombreFlecha: "Potente", dañoFlecha: 80},
+  {nombreFlecha: "Normal", dañoFlecha: 60}
+]);

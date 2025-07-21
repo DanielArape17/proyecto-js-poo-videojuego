@@ -1,9 +1,11 @@
 /*Funciones*/
 
+//Crea un numero aleatorio
 function numeroAleatorio(max){
   return Math.floor(Math.random() * (max));
 }
 
+//Creo las velocidades random de cada personaje en una respectiva ronda
 function turnos(personajesJugables){
   let velocidadesUsadas = []
   
@@ -16,6 +18,7 @@ function turnos(personajesJugables){
   return velocidadesUsadas.sort().reverse()
 }
 
+//Los personajes atacan ordenadamente en una ronda
 function atacarPorTurno(personajesJugables){
   let turno = 0
   let resultadoTurnos = turnos(personajesJugables);
@@ -27,6 +30,7 @@ function atacarPorTurno(personajesJugables){
     } while (personajeAtacado === resultadoTurnos[turno][1] || personajesJugables[personajeAtacado].muerto === true);
 
     if(personajesJugables[resultadoTurnos[turno][1]].muerto === false){
+      //Hacer un if para aplicar la defensa aqui para saber si el ataque es exitoso o fallido
       personajesJugables[resultadoTurnos[turno][1]].atacar(personajesJugables[personajeAtacado]);
     }
     
@@ -41,6 +45,7 @@ function atacarPorTurno(personajesJugables){
 return personajesMuertos
 }
 
+//Anuncia el Ganador
 function ganador(personajesJugables, personajesJugables){
   let ganador = personajesJugables
 
