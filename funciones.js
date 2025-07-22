@@ -20,24 +20,29 @@ function turnos(personajesJugables){
 
 //Los personajes atacan ordenadamente en una ronda
 function atacarPorTurno(personajesJugables){
-  let turno = 0
+  let turno = 0;
   let resultadoTurnos = turnos(personajesJugables);
-  let personajesMuertos = []
+  let personajesMuertos = [];
+  let personajeAtacado = 0;
 
   while(turno < largoPersonajesJugables){
+    let atacante = personajesJugables[resultadoTurnos[turno][1]];
+    
     do {
       personajeAtacado = numeroAleatorio(largoPersonajesJugables);
+      
     } while (personajeAtacado === resultadoTurnos[turno][1] || personajesJugables[personajeAtacado].muerto === true);
 
-    if(personajesJugables[resultadoTurnos[turno][1]].muerto === false){
-      //Hacer un if para aplicar la defensa aqui para saber si el ataque es exitoso o fallido
-      personajesJugables[resultadoTurnos[turno][1]].atacar(personajesJugables[personajeAtacado]);
+    let defensor = personajesJugables[personajeAtacado];
+
+    if(atacante.muerto === false){
+      atacante.atacar(defensor)
     }
     
-    if (personajesJugables[personajeAtacado].vida < 1){
-      console.log(`ha muerto ${personajesJugables[personajeAtacado].nombre}`)
-      personajesJugables[personajeAtacado].muerto = true
-      personajesMuertos.push(personajesJugables[personajeAtacado])
+    if (defensor.vida < 1){
+      console.log(`ha muerto ${defensor.nombre}`)
+      defensor.muerto = true
+      personajesMuertos.push(defensor)
     }
 
     turno++

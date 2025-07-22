@@ -9,13 +9,22 @@ class Personaje {
     this.muerto = muerto;
   }
 
+  saludar() { 
+    console.log(`Hola, mi nombre es ${this.nombre} y soy un ${this.clase}`)
+  }
+
   atacarConManos(atacado) {
     atacado.vida = atacado.vida - this.ataque 
     console.log(` ${this.nombre} a atacado con puños a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
   }
 
-  saludar() { 
-    console.log(`Hola, mi nombre es ${this.nombre} y soy un ${this.clase}`)
+  defenderse(ataque) {
+    let posibilidadDeDefensa = numeroAleatorio(this.defensa) + 1;
+    if(posibilidadDeDefensa > ataque){
+      console.log(`${this.nombre} ha hecho una defensa existosa. Defensa: ${posibilidadDeDefensa}. Ataque Fallido: ${ataque}`);
+      return true;
+    }
+    return false;
   }
 }
 
@@ -35,13 +44,24 @@ class Guerrero extends Personaje{
   atacar(atacado){
     let posibilidadDeAtaque = numeroAleatorio(6) + 1
     if(posibilidadDeAtaque < 3){
-      super.atacarConManos(atacado)
+      if(atacado.defenderse(this.ataque) === false){
+        super.atacarConManos(atacado)
+      }
+      else{
+        console.log(`${this.nombre} ha fallado su ataque ${this.ataque}`)
+      }
     }
     else{
       let totalArmas = Object.keys(this.armas).length
       let elegirArma = numeroAleatorio(totalArmas)
-      atacado.vida = atacado.vida - this.armas[elegirArma].dañoArma
-      console.log(` ${this.nombre} a atacado con ${this.armas[elegirArma].nombreArma} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+      if(atacado.defenderse(this.armas[elegirArma].dañoArma) === false){
+        atacado.vida = atacado.vida - this.armas[elegirArma].dañoArma
+        console.log(` ${this.nombre} a atacado con ${this.armas[elegirArma].nombreArma} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+      }
+      else{
+        console.log(`${this.nombre} ha fallado su ataque ${this.armas[elegirArma].nombreArma}: ${this.armas[elegirArma].dañoArma}`)
+      }
+      
     }
   }
 }
@@ -76,13 +96,24 @@ class Mago extends Personaje{
   atacar(atacado){
     let posibilidadDeAtaque = numeroAleatorio(6) + 1
     if(posibilidadDeAtaque < 3){
-      super.atacarConManos(atacado)
+      if(atacado.defenderse(this.ataque) === false){
+        super.atacarConManos(atacado)
+      }
+      else{
+        console.log(`${this.nombre} ha fallado su ataque ${this.ataque}`)
+      }
     }
     else{
       let totalHechizos = Object.keys(this.hechizos).length
       let elegirHechizos = numeroAleatorio(totalHechizos)
-      atacado.vida = atacado.vida - this.hechizos[elegirHechizos].dañoHechizos
-      console.log(` ${this.nombre} a atacado con ${this.hechizos[elegirHechizos].nombreHechizos} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+      
+      if(atacado.defenderse(this.hechizos[elegirHechizos].dañoHechizos) === false){
+        atacado.vida = atacado.vida - this.hechizos[elegirHechizos].dañoHechizos
+        console.log(` ${this.nombre} a atacado con ${this.hechizos[elegirHechizos].nombreHechizos} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)      
+      }
+      else{
+        console.log(`${this.nombre} ha fallado su ataque ${this.hechizos[elegirHechizos].nombreHechizos}: ${this.hechizos[elegirHechizos].dañoHechizos}`)
+      }
     }
   }
 }
@@ -115,13 +146,23 @@ class Arquero extends Personaje{
   atacar(atacado){
     let posibilidadDeAtaque = numeroAleatorio(6) + 1
     if(posibilidadDeAtaque < 3){
-      super.atacarConManos(atacado)
+      if(atacado.defenderse(this.ataque) === false){
+        super.atacarConManos(atacado)
+      }
+      else{
+        console.log(`${this.nombre} ha fallado su ataque ${this.ataque}`)
+      }
     }
     else{
       let totalFlechas = Object.keys(this.flechas).length
-      let elegirFlechas = numeroAleatorio(totalFlechas)
-      atacado.vida = atacado.vida - this.flechas[elegirFlechas].dañoFlecha
-      console.log(` ${this.nombre} a atacado con ${this.flechas[elegirFlechas].nombreFlecha} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+      let elegirFlechas = numeroAleatorio(totalFlechas)   
+      if(atacado.defenderse(this.flechas[elegirFlechas].dañoFlecha) === false){
+        atacado.vida = atacado.vida - this.flechas[elegirFlechas].dañoFlecha
+        console.log(` ${this.nombre} a atacado con ${this.flechas[elegirFlechas].nombreFlecha} a ${atacado.nombre}. Vida de ${atacado.nombre} a bajado a ${atacado.vida}`)
+      }
+      else{
+        console.log(`${this.nombre} ha fallado su ataque ${this.flechas[elegirFlechas].nombreFlecha}: ${this.flechas[elegirFlechas].dañoFlecha}`)
+      }
     }
   }
 }
