@@ -51,7 +51,7 @@ return personajesMuertos
 }
 
 //Anuncia el Ganador
-function ganador(personajesJugables, personajesJugables){
+function ganador(personajesJugables, personajesMuertos){
   let ganador = personajesJugables
 
   personajesMuertos.forEach((personaje) => {
