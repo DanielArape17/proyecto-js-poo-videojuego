@@ -41,9 +41,17 @@ class Guerrero extends Personaje{
     this.armas = armas;
   }
 
+
+  //No se que estoy haciendo aqui
   especial(){
-    console.log(`${this.nombre} ha utilizado su movimiento especial de ${this.clase}`)
-    
+    let habilidadUsada = false;
+    if(habilidadUsada === false){
+      console.log(`${this.nombre} ha utilizado su movimiento especial de ${this.clase}. Atacar X3`);
+      for(let i = 0; i < 3; i++){
+        atacarPorTurno();
+      }
+      habilidadUsada = true;
+    }
   }
 
   atacar(atacado){
