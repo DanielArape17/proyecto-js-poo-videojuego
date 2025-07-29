@@ -79,12 +79,12 @@ class Guerrero extends Personaje{
   }
 }
 
-const guardiaHielo = new Guerrero("Guardia de Hielo", "Guerrero", 160, 40, 85, 6, false, [ 
+const guardiaHielo = new Guerrero("Guardia de Hielo", "Guerrero", 130, 40, 75, 4, false, [ 
   {nombreArma:"Hacha", dañoArma: 70},
   {nombreArma:"Dagas", dañoArma: 55}
 ]);
 
-const soldadoLA = new Guerrero("Soldado de LA", "Guerrero", 170, 45, 80, 5, false, [
+const soldadoLA = new Guerrero("Soldado de LA", "Guerrero", 145, 45, 70, 3, false, [
   {nombreArma:"Espada", dañoArma: 65},
   {nombreArma:"Onda de Luz Azul", dañoArma: 85}
 ]);
